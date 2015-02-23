@@ -32,7 +32,7 @@ The "error_filter", "warning_filter" and "mark_filer" regular expressions contai
 | warning_filter         | warning\|not found\||[^\w]defer | All lines containing a match for this regular expression are marked with the scope defined by the warning_scope setting and bookmarked. |
 | warning_scope          | markup.changed                  | Scope used for marking lines containing a match of the warning_filter regular expression. |
 | warning_status_caption | Warnings                        | Prefix for the number of lines containing a match of the warning_filter regular expression. This can be used for I18N. |
-| mark_filter            | [^\w](start\|quit\|end\|shut(ing)* down)[^\w] | All lines containing a match for this regular expression are marked with the scope defined by the mark_scope setting and bookmarked. |
+| mark_filter            | \[^\w\]\(start\|quit\|end\|shut\(ing\)* down\)\[^\w\] | All lines containing a match for this regular expression are marked with the scope defined by the mark_scope setting and bookmarked. |
 | mark_scope             | markup.inserted                 | Scope used for marking lines containing a match of the mark_filter regular expression. |
 | mark_status_caption    | Marks                           | Prefix for the number of lines containing a match of the mark_filter regular expression. This can be used for I18N. |
 
