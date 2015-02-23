@@ -1,0 +1,41 @@
+{
+	// The folowing filters select the lines that are automatically bookmarked
+	// whan loading a logfile. The lines containing a match of these regular
+	// expressions are colored depending on the type.
+
+	// Assigns the scope defined in error_scope to the line if they contain a match for
+	// this regular expression. Normally the line is marked with the "invalid"
+	// (red) scope.
+	"error_filter": "error|fail|exception",
+
+	// If you want to use another scope for marking errors change the following line:
+	"error_scope": "invalid",
+
+	// This is the text displayed before the number of lines matching the error_filter
+	// regular expression. This can be used for I18N.
+	"error_status_caption": "Errors",
+
+	// Assigns the scope defined in warning_scope to the line if they contain a match for
+	// this regular expression. Normally the line is marked with the "markup.changed"
+	// (yellow) scope.
+	"warning_filter": "warning|not found|[^\\w]defer",
+
+	// If you want to use another scope for marking errors change the following line:
+	"warning_scope": "markup.changed",
+
+	// This is the text displayed before the number of lines matching the warning_filter
+	// regular expression. This can be used for I18N.
+	"warning_status_caption": "Warnings",
+
+	// Assigns the scope defined in warning_scope to the line if they contain a match for
+	// this regular expression. Normally the line is marked with the "markup.inserted"
+	// (green) scope.
+	"mark_filter": "[^\\w](start|quit|end|shut(ing)* down)[^\\w]",
+
+	// If you want to use another scope for marking errors change the following line:
+	"mark_scope": "markup.inserted",
+
+	// This is the text displayed before the number of lines matching the mark_filter
+	// regular expression. This can be used for I18N.
+	"mark_status_caption": "Marks"
+}

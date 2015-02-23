@@ -1,0 +1,8 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: Logfile
+scopeName: text.logfile
+fileTypes: ["log"]
+uuid: c1609b8b-6940-4e3e-afb4-61cd1b738156
+
+# patterns:
