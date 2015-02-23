@@ -1,27 +1,30 @@
 # LogView
-Logfile viewer and highlighter for Sublime Text 3.
+Logfile highlighter for Sublime Text 3.
 
-# Requirements
+## Requirements
 This plug-in requires at least Sublime Text 3 Build 3065. Please download the correct sublime text version before using this plug-in.
 
-# Supported file extensions
-All files using the extension .log are automatically opened as logfiles. Any other file can be treated as a logfile by changing the syntax to "Logfile".
-
-# Functionality
+## Functionality
 This Sublime Text 3 plug-in automates some common tasks when opening logfiles:
-- Automatically makes the file readonly to prevent accidental changes.
-- Search for common patterns and highlight them.
+- Automatically makes the file read-only to prevent accidental changes.
+- Search for common patterns and highlight them (see chapter "Automatic highlighting")
 - Set bookmarks on the highlighted lines to speed up inspection of the matches.
 
-# Automatic highlighting
+## Supported file extensions
+All files using the extension .log are automatically opened as logfiles. Any other file can be treated as a logfile by changing the syntax to "Logfile".
+
+## Editing the logfile
+You have to switch to the "Plain Text" syntax in order to edit the opened logfile. As soon as you're done editing the file, you can switch back to the "Logfile" syntax. The file will automatically be parsed again and set to read-only.
+
+## Automatic highlighting
 The LogView plug-in distinguishes three types of log entries:
 - errors
 - warnings
 - marks
 
-It is possible to set a regular expression for detecting every type of log entry via the config file. If a file is loaded (or the file type is changed to "Logfile") it is automatically processed and all lines, that contain matches to the configured regular expressions are automatically highlighted and bookmarked. This way it is possible to analyse logfiles much faster and find the relevant portions with the "goto bookmark" (F2) functionality. The line highlighting feature makes it possible to spot critical areas in the logfile via the Minimap. Areas with a high density of red or yellow marks may hint at a problem.
+It is possible to set a regular expression for detecting every type of log entry within the configuration file. If a file is loaded (or the file type is changed to "Logfile") it is automatically processed and all lines, that contain matches to the configured regular expressions are automatically highlighted and bookmarked. This way it is possible to analyse logfiles much faster and find the relevant portions with the "goto bookmark" (F2) functionality. The line highlighting feature shows the critical areas in the logfile via the Minimap. Portions of the logfile with a high density of red or yellow marks may hint at a problem.
 
-The "error_filter", "warning_filter" and "mark_filer" regular expressions contain sensible defaults. None the less you should tweak them according match the logfiles you're frequently dealing with.
+The "error_filter", "warning_filter" and "mark_filer" regular expressions contain sensible defaults. None the less you should tweak them to match the logfiles you're frequently dealing with.
 
 # Configuration parameters
 | Parameter              | Default                         | Description |
@@ -37,6 +40,3 @@ The "error_filter", "warning_filter" and "mark_filer" regular expressions contai
 | mark_status_caption    | Marks                           | Prefix for the number of lines containing a match of the mark_filter regular expression. This can be used for I18N. |
 
 All configuration parameters can be set via the Preferences menu. Just open Preferences > Package Settings > Log View > Settings - User. To have a look at the default settings use the "Settings - Default" menu option.
-
-# Editing the logfile
-You have to switch to the "Plain Text" syntax in order to edit the opened logfile. As soon as you're done editing the file you can switch back to the "Logfile" syntax.
