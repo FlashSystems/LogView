@@ -13,6 +13,13 @@ This Sublime Text 3 plug-in automates some common tasks when opening logfiles:
 ## Supported file extensions
 All files using the extension .log are automatically opened as logfiles. Any other file can be treated as a logfile by changing the syntax to "Logfile".
 
+## Installation
+
+This package should be installed using Package Control. Follow these steps to install LogView:
+- Make sure you're using the correct Sublime Tec 3 version (see Requirements).
+- Install [Package Control](https://sublime.wbond.net/installation) if you don't already have it.
+- [Use Package Control](https://sublime.wbond.net/docs/usage) to search for LogView and install the package.
+
 ## Editing the logfile
 You have to switch to the "Plain Text" syntax in order to edit the opened logfile. As soon as you're done editing the file, you can switch back to the "Logfile" syntax. The file will automatically be parsed again and set to read-only.
 
