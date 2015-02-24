@@ -16,7 +16,7 @@ All files using the extension .log are automatically opened as logfiles. Any oth
 ## Installation
 
 This package should be installed using Package Control. Follow these steps to install LogView:
-- Make sure you're using the correct Sublime Tec 3 version (see Requirements).
+- Make sure you're using the correct Sublime Text 3 version (see Requirements).
 - Install [Package Control](https://sublime.wbond.net/installation) if you don't already have it.
 - [Use Package Control](https://sublime.wbond.net/docs/usage) to search for LogView and install the package.
 
