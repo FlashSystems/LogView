@@ -31,7 +31,7 @@ The LogView plug-in distinguishes three types of log entries:
 - warnings
 - marks
 
-It is possible to set a regular expression for detecting every type of log entry within the configuration file. If a file is loaded (or the file type is changed to "Logfile") it is automatically processed and all lines, that contain matches to the configured regular expressions are automatically highlighted and bookmarked. This way it is possible to analyse logfiles much faster and find the relevant portions with the "goto bookmark" (F2) functionality. The line highlighting feature shows the critical areas in the logfile via the Minimap. Portions of the logfile with a high density of red or yellow marks may hint at a problem.
+It is possible to set a regular expression for detecting every type of log entry within the configuration file. If a file is loaded (or the file type is changed to "Logfile") it is automatically processed and all lines, that contain matches to the configured regular expressions are automatically highlighted and bookmarked. This way it is possible to analyse logfiles much faster and find the relevant portions with the "goto bookmark" (<kbd>F2</kbd>) functionality. The line highlighting feature shows the critical areas in the logfile via the Minimap. Portions of the logfile with a high density of red or yellow marks may hint at a problem.
 
 If more than one regular expression matches for a given line of the logfile all matches are counted. For highlighting the line the error_filter takes precedence over the warning_filter and the warning_filter takes precedence over the mark_filter.
 
