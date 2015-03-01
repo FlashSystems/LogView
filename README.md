@@ -1,6 +1,8 @@
 # LogView
 Logfile highlighter for Sublime Text 3.
 
+![ScreenShot](https://raw.github.com/FlashSystems/LogView/master/README/LogViewScreen.png)
+
 ## Requirements
 This plug-in requires at least Sublime Text 3 Build 3065. Please download the correct sublime text version before using this plug-in.
 
