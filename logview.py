@@ -68,14 +68,14 @@ class EventListener(sublime_plugin.EventListener):
 		markScope = settings.get("mark_scope", "markup.inserted")
 		markStatusCaption = settings.get("mark_status_caption", "Marks")
 
-		foundRegions = self.highlight(view, errorRegex, "logfile.errors", errorScope)
-		view.set_status("logview.0", errorStatusCaption + " " + str(len(foundRegions)))
+		foundRegions = self.highlight(view, markRegex, "logfile.marks", markScope)
+		view.set_status("logview.2", markStatusCaption + " " + str(len(foundRegions)))
 		bookmarks = foundRegions
 		foundRegions = self.highlight(view, warningRegex, "logfile.warnings", warningScope)
 		view.set_status("logview.1", warningStatusCaption + " " + str(len(foundRegions)))
 		bookmarks += foundRegions
-		foundRegions = self.highlight(view, markRegex, "logfile.marks", markScope)
-		view.set_status("logview.2", markStatusCaption + " " + str(len(foundRegions)))
+		foundRegions = self.highlight(view, errorRegex, "logfile.errors", errorScope)
+		view.set_status("logview.0", errorStatusCaption + " " + str(len(foundRegions)))
 		bookmarks += foundRegions
 		del foundRegions
 
