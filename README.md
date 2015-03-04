@@ -38,16 +38,16 @@ If more than one regular expression matches for a given line of the logfile all 
 The "error_filter", "warning_filter" and "mark_filer" regular expressions contain sensible defaults. None the less you should tweak them to match the logfiles you're frequently dealing with.
 
 # Configuration parameters
-| Parameter              | Default                         | Description |
-| :--------------------- | :------------------------------ | :---------- |
-| error_filter           | error\|fail\|exception          | All lines containing a match for this regular expression are marked with the scope defined by the error_scope setting and bookmarked. |
-| error_scope            | invalid                         | Scope used for marking lines containing a match of the error_filter regular expression. |
-| error_status_caption   | Errors                          | Prefix for the number of lines containing a match of the error_filter regular expression. This can be used for I18N. |
-| warning_filter         | warning\|not found\||[^\w]defer | All lines containing a match for this regular expression are marked with the scope defined by the warning_scope setting and bookmarked. |
-| warning_scope          | markup.changed                  | Scope used for marking lines containing a match of the warning_filter regular expression. |
-| warning_status_caption | Warnings                        | Prefix for the number of lines containing a match of the warning_filter regular expression. This can be used for I18N. |
-| mark_filter            | \[^\w\]\(start\|quit\|end\|shut\(ing\)* down\)\[^\w\] | All lines containing a match for this regular expression are marked with the scope defined by the mark_scope setting and bookmarked. |
-| mark_scope             | markup.inserted                 | Scope used for marking lines containing a match of the mark_filter regular expression. |
-| mark_status_caption    | Marks                           | Prefix for the number of lines containing a match of the mark_filter regular expression. This can be used for I18N. |
+| Parameter              | Default                        | Description |
+| :--------------------- | :----------------------------- | :---------- |
+| error_filter           | `error|fail|exception`         | All lines containing a match for this regular expression are marked with the scope defined by the error_scope setting and bookmarked. |
+| error_scope            | `invalid`                      | Scope used for marking lines containing a match of the error_filter regular expression. |
+| error_status_caption   | `Errors`                       | Prefix for the number of lines containing a match of the error_filter regular expression. This can be used for I18N. |
+| warning_filter         | `warning|not found|[^\w]defer` | All lines containing a match for this regular expression are marked with the scope defined by the warning_scope setting and bookmarked. |
+| warning_scope          | `markup.changed`               | Scope used for marking lines containing a match of the warning_filter regular expression. |
+| warning_status_caption | `Warnings`                     | Prefix for the number of lines containing a match of the warning_filter regular expression. This can be used for I18N. |
+| mark_filter            | `[^\w](start|quit|end|shut(ing)* down)[^\w]` | All lines containing a match for this regular expression are marked with the scope defined by the mark_scope setting and bookmarked. |
+| mark_scope             | `markup.inserted`                 | Scope used for marking lines containing a match of the mark_filter regular expression. |
+| mark_status_caption    | `Marks`                           | Prefix for the number of lines containing a match of the mark_filter regular expression. This can be used for I18N. |
 
 All configuration parameters can be set via the Preferences menu. Just open Preferences > Package Settings > Log View > Settings - User. To have a look at the default settings use the "Settings - Default" menu option.
