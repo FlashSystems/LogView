@@ -1,0 +1,6 @@
+[
+    {
+        "caption": "LogView: Rescan file",
+        "command": "log_view_rescan"
+    }
+]

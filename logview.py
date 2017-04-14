@@ -39,8 +39,15 @@ class StatusAnimation:
 			self.stopFlag = True
 			self.view.erase_status(self.key)
 
-class EventListener(sublime_plugin.EventListener):
-	def highlight(self, view, regex, regionName, scope):
+class LogView:
+	regionStyles = {
+		"fill": 0,
+		"outline": sublime.DRAW_NO_FILL,
+		"underline": sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE | sublime.DRAW_SOLID_UNDERLINE,
+		"none": sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE
+	}
+
+	def highlight(self, view, regex, regionName, scope, icon, regionFlags):
 		if (regex == "") or (regex == None):
 			return []
 
@@ -51,7 +58,7 @@ class EventListener(sublime_plugin.EventListener):
 			# Expand all regions to match the whole line and mark the line with the given scpe
 			for i in range(0, numFoundRegions):
 				foundRegions[i] = view.expand_by_class(foundRegions[i], sublime.CLASS_LINE_START | sublime.CLASS_LINE_END)
-			view.add_regions(regionName, foundRegions, scope, "", sublime.DRAW_NO_FILL);
+			view.add_regions(regionName, foundRegions, scope, "Packages/LogView/" + icon + ".png", regionFlags);
 
 		return foundRegions
 
@@ -67,14 +74,21 @@ class EventListener(sublime_plugin.EventListener):
 		markRegex = settings.get("mark_filter", "[^\w](start|quit|end|shut(ing)* down)[^\w]")
 		markScope = settings.get("mark_scope", "markup.inserted")
 		markStatusCaption = settings.get("mark_status_caption", "Marks")
+		highlighStyle = settings.get("highlight_style", "outline")
 
-		foundRegions = self.highlight(view, markRegex, "logfile.marks", markScope)
+		# Determin the falgs to set on the region for correct highlighting
+		if (highlighStyle in self.regionStyles):
+			regionFlags = self.regionStyles[highlighStyle]
+		else:
+			regionFlags = self.regionStyles["outline"]
+
+		foundRegions = self.highlight(view, markRegex, "logfile.marks", markScope, "mark", regionFlags)
 		view.set_status("logview.2", markStatusCaption + " " + str(len(foundRegions)))
 		bookmarks = foundRegions
-		foundRegions = self.highlight(view, warningRegex, "logfile.warnings", warningScope)
+		foundRegions = self.highlight(view, warningRegex, "logfile.warnings", warningScope, "warning", regionFlags)
 		view.set_status("logview.1", warningStatusCaption + " " + str(len(foundRegions)))
 		bookmarks += foundRegions
-		foundRegions = self.highlight(view, errorRegex, "logfile.errors", errorScope)
+		foundRegions = self.highlight(view, errorRegex, "logfile.errors", errorScope, "error", regionFlags)
 		view.set_status("logview.0", errorStatusCaption + " " + str(len(foundRegions)))
 		bookmarks += foundRegions
 		del foundRegions
@@ -116,10 +130,19 @@ class EventListener(sublime_plugin.EventListener):
 		view.erase_regions("logfile.marks")
 		view.erase_regions("bookmarks")
 
+class EventListener(LogView, sublime_plugin.EventListener):
 	# Called when a file is finished loading.
 	def on_load(self, view):
 		if (view.settings().get('syntax') == "Packages/LogView/logview.tmLanguage"):
 			self.prepareView(view)
+
+	# Called if a new view is created from an existing one. We've to check again if this view contains a logfile.
+	def on_clone(self, view):
+		if (view.settings().get('syntax') == "Packages/LogView/logview.tmLanguage"):
+			self.prepareView(view)
+
+	def on_reload(self, view):
+		print("reload")
 
 	# Called if a text command is executed on the buffer
 	def on_text_command(self, view, command_name, args):
@@ -138,3 +161,12 @@ class EventListener(sublime_plugin.EventListener):
 
 		# Always run the command as is
 		return None
+
+class LogViewRescan(LogView, sublime_plugin.TextCommand):
+	def run(self, edit):
+		if (self.view.settings().get('syntax') == "Packages/LogView/logview.tmLanguage"):
+			self.unprepareView(self.view)
+			self.prepareView(self.view)
+
+	def is_enabled(self):
+		return self.view.settings().get('syntax') == "Packages/LogView/logview.tmLanguage"
