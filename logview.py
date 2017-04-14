@@ -66,7 +66,7 @@ class LogView:
 		settings = sublime.load_settings("logview.sublime-settings")
 
 		errorRegex = settings.get("error_filter", "error|fail|exception")
-		errorScope = settings.get("error_scope", "invalid")
+		errorScope = settings.get("error_scope", "markup.deleted")
 		errorStatusCaption = settings.get("error_status_caption", "Errors")
 		warningRegex = settings.get("warning_filter", "warning|not found|[^\w]defer")
 		warningScope = settings.get("warning_scope", "markup.changed")
@@ -74,7 +74,7 @@ class LogView:
 		markRegex = settings.get("mark_filter", "[^\w](start|quit|end|shut(ing)* down)[^\w]")
 		markScope = settings.get("mark_scope", "markup.inserted")
 		markStatusCaption = settings.get("mark_status_caption", "Marks")
-		highlighStyle = settings.get("highlight_style", "outline")
+		highlighStyle = settings.get("highlight_style", "underline")
 
 		# Determin the falgs to set on the region for correct highlighting
 		if (highlighStyle in self.regionStyles):
