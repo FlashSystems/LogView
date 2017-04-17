@@ -51,6 +51,7 @@ The "error_filter", "warning_filter" and "mark_filer" regular expressions contai
 | mark_filter            | `[^\w](start\|quit\|end\|shut(ing)* down)[^\w]` | All lines containing a match for this regular expression are marked with the scope defined by the mark_scope setting and bookmarked. |
 | mark_scope             | `markup.inserted`                 | Scope used for marking lines containing a match of the mark_filter regular expression. |
 | mark_status_caption    | `Marks`                           | Prefix for the number of lines containing a match of the mark_filter regular expression. This can be used for I18N. |
+| auto_match_words       | `true`                       | 	If this config option is set to true the reguluar expression set via `error_filter`, `warning_filter` and `mark_filter` is automatically extended to only match whole words. If you want to use the regular expressions as they are specified, set this value to false. |
 | highlight_style        | `underline`  | Configures the style for marking the lines selected by the filters. Available styles are: fill, outline, underline and none. See default config for details. |
 
 All configuration parameters can be set via the Preferences menu. Just open Preferences > Package Settings > Log View > Settings - User. To have a look at the default settings use the "Settings - Default" menu option.
