@@ -54,4 +54,4 @@ The "error_filter", "warning_filter" and "mark_filer" regular expressions contai
 | auto_match_words       | `true`                       | 	If this config option is set to true the reguluar expression set via `error_filter`, `warning_filter` and `mark_filter` is automatically extended to only match whole words. If you want to use the regular expressions as they are specified, set this value to false. |
 | highlight_style        | `underline`  | Configures the style for marking the lines selected by the filters. Available styles are: fill, outline, underline and none. See default config for details. |
 
-All configuration parameters can be set via the Preferences menu. Just open Preferences > Package Settings > Log View > Settings - User. To have a look at the default settings use the "Settings - Default" menu option.
+All configuration parameters can be set via the Preferences menu. Just open Preferences > Package Settings > Log View > Settings.
