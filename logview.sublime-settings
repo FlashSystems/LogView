@@ -18,7 +18,7 @@
 	// Assigns the scope defined in warning_scope to the line if they contain a match for
 	// this regular expression. Normally the line is marked with the "markup.changed"
 	// (yellow) scope.
-	"warning_filter": "warning|not found|[^\\w]defer",
+	"warning_filter": "warning|not found|defer(ed)?",
 
 	// If you want to use another scope for marking errors change the following line:
 	"warning_scope": "markup.changed",
@@ -30,7 +30,7 @@
 	// Assigns the scope defined in warning_scope to the line if they contain a match for
 	// this regular expression. Normally the line is marked with the "markup.inserted"
 	// (green) scope.
-	"mark_filter": "[^\\w](start|quit|end|shut(ing)* down)[^\\w]",
+	"mark_filter": "start(ing|ed)?|quit|end|shut(ing)? down",
 
 	// If you want to use another scope for marking errors change the following line:
 	"mark_scope": "markup.inserted",
@@ -38,6 +38,12 @@
 	// This is the text displayed before the number of lines matching the mark_filter
 	// regular expression. This can be used for I18N.
 	"mark_status_caption": "Marks",
+
+	// If this config option is set to true the reguluar expression set via error_filter,
+	// warning_filter and mark_filter is automatically extended to only match whole words.
+	// If you want to use the regular expressions as they are specified, set this value
+	// to false.
+	"auto_match_words": true,
 
 	// Defines how the error, warning and mark scopes are highlighted.
 	// Available styles are:

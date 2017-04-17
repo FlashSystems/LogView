@@ -47,6 +47,9 @@ class LogView:
 		"none": sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE
 	}
 
+	regexPrefix = "(?<![\\w])("
+	regexSuffix = ")(?![\\w])"
+
 	def highlight(self, view, regex, regionName, scope, icon, regionFlags):
 		if (regex == "") or (regex == None):
 			return []
@@ -57,7 +60,7 @@ class LogView:
 		if (numFoundRegions > 0):
 			# Expand all regions to match the whole line and mark the line with the given scpe
 			for i in range(0, numFoundRegions):
-				foundRegions[i] = view.expand_by_class(foundRegions[i], sublime.CLASS_LINE_START | sublime.CLASS_LINE_END)
+				foundRegions[i] = view.line(foundRegions[i])
 			view.add_regions(regionName, foundRegions, scope, "Packages/LogView/" + icon + ".png", regionFlags);
 
 		return foundRegions
@@ -68,13 +71,20 @@ class LogView:
 		errorRegex = settings.get("error_filter", "error|fail|exception")
 		errorScope = settings.get("error_scope", "markup.deleted")
 		errorStatusCaption = settings.get("error_status_caption", "Errors")
-		warningRegex = settings.get("warning_filter", "warning|not found|[^\w]defer")
+		warningRegex = settings.get("warning_filter", "warning|not found|defer(ed)?")
 		warningScope = settings.get("warning_scope", "markup.changed")
 		warningStatusCaption = settings.get("warning_status_caption", "Warnings")
-		markRegex = settings.get("mark_filter", "[^\w](start|quit|end|shut(ing)* down)[^\w]")
+		markRegex = settings.get("mark_filter", "start(ing|ed)?|quit|end|shut(ing)? down")
 		markScope = settings.get("mark_scope", "markup.inserted")
 		markStatusCaption = settings.get("mark_status_caption", "Marks")
 		highlighStyle = settings.get("highlight_style", "underline")
+		autoMatchWords = settings.get("auto_match_words", True)
+
+		# If auto_match_words is set to true, extend the regular expressions with lookarounds to only match words.
+		if (autoMatchWords):
+			errorRegex = self.regexPrefix + errorRegex + self.regexSuffix
+			warningRegex = self.regexPrefix + warningRegex + self.regexSuffix
+			markRegex = self.regexPrefix + markRegex + self.regexSuffix
 
 		# Determin the falgs to set on the region for correct highlighting
 		if (highlighStyle in self.regionStyles):
@@ -94,7 +104,7 @@ class LogView:
 		del foundRegions
 
 		# Set a bookmark for each region
-		view.add_regions("bookmarks", bookmarks, "bookmarks", "bookmark", sublime.HIDDEN);
+		view.add_regions("bookmarks", bookmarks, "bookmarks", "", sublime.HIDDEN);
 		del bookmarks
 
 		# Stop the animation
@@ -140,9 +150,6 @@ class EventListener(LogView, sublime_plugin.EventListener):
 	def on_clone(self, view):
 		if (view.settings().get('syntax') == "Packages/LogView/logview.tmLanguage"):
 			self.prepareView(view)
-
-	def on_reload(self, view):
-		print("reload")
 
 	# Called if a text command is executed on the buffer
 	def on_text_command(self, view, command_name, args):
