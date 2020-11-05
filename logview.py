@@ -117,7 +117,7 @@ class LogView:
 	# Called to prepare the view:
 	# Makes it read only and applies the highlighting
 	def prepareView(self, view):
-		view.set_read_only(True)
+		#view.set_read_only(True)
 		view.set_status("logview", "read-only")
 
 		# Set a temporary message
