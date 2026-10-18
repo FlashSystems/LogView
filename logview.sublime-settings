@@ -30,7 +30,7 @@
 	// Assigns the scope defined in warning_scope to the line if they contain a match for
 	// this regular expression. Normally the line is marked with the "markup.inserted"
 	// (green) scope.
-	"mark_filter": "start(ing|ed)?|quit|end|shut(ing)? down",
+	"mark_filter": "start(ing|ed)?|quit|end|shut(ting)? down",
 
 	// If you want to use another scope for marking errors change the following line:
 	"mark_scope": "markup.inserted",

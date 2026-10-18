@@ -74,7 +74,7 @@ class LogView:
 		warningRegex = settings.get("warning_filter", "warning|not found|defer(ed)?")
 		warningScope = settings.get("warning_scope", "markup.changed")
 		warningStatusCaption = settings.get("warning_status_caption", "Warnings")
-		markRegex = settings.get("mark_filter", "start(ing|ed)?|quit|end|shut(ing)? down")
+		markRegex = settings.get("mark_filter", "start(ing|ed)?|quit|end|shut(ting)? down")
 		markScope = settings.get("mark_scope", "markup.inserted")
 		markStatusCaption = settings.get("mark_status_caption", "Marks")
 		highlighStyle = settings.get("highlight_style", "underline")
